@@ -1,7 +1,418 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<meta charset="UTF-8"><!DOCTYPE html>
+<html lang="ja">
+<head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>About | アスライト株式会社 | FCSPORTS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@300;400;500;700;900&family=Barlow+Condensed:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+img{display:block;max-width:100%}
+:root{
+  --bk:#090909;--ink:#0d1117;--w:#f2ede4;
+  --mid:#131313;--mid2:#1b1b1b;--mid3:#232323;
+  --red:#ff3200;--gold:#d4a550;--cyan:#00e5d4;
+  --border:rgba(242,237,228,.09);
+  --muted:rgba(242,237,228,.40);--muted2:rgba(242,237,228,.65);
+  --px:clamp(16px,5.5vw,72px);--hh:60px;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+body{background:var(--bk);color:var(--w);font-family:'Noto Sans JP',sans-serif;overflow-x:hidden;line-height:1.7}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.25}
+
+/* ── HEADER ── */
+.sh{position:fixed;inset:0 0 auto;z-index:500;height:var(--hh);display:flex;align-items:center;justify-content:space-between;padding:0 var(--px);background:rgba(9,9,9,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:background .3s}
+.sh.scrolled{background:rgba(9,9,9,.98)}
+.sh-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:4px;color:var(--w);text-decoration:none}
+.sh-logo em{color:var(--red);font-style:normal}
+.sh-nav{display:flex;align-items:center;gap:6px}
+.sh-nav-item{position:relative}
+.sh-nav-link{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:6px 12px;display:block;transition:color .2s;white-space:nowrap}
+.sh-nav-link:hover,.sh-nav-link.active{color:var(--w)}
+.sh-nav-link.active::after{content:'';position:absolute;bottom:-1px;left:12px;right:12px;height:2px;background:var(--red)}
+/* dropdown */
+.sh-drop{position:absolute;top:calc(100% + 8px);left:0;min-width:160px;background:rgba(13,13,13,.98);backdrop-filter:blur(16px);border:1px solid var(--border);padding:8px 0;opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity .2s var(--ease),transform .2s var(--ease)}
+.sh-nav-item:hover .sh-drop{opacity:1;pointer-events:auto;transform:none}
+.sh-drop a{display:block;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:10px 18px;transition:color .15s,background .15s}
+.sh-drop a:hover{color:var(--w);background:rgba(255,50,0,.08)}
+/* cta */
+.sh-cta{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--red);color:#fff;padding:9px 20px;text-decoration:none;transition:background .2s,transform .15s;white-space:nowrap;margin-left:8px}
+.sh-cta:hover{background:#d42800;transform:translateY(-1px)}
+/* hamburger */
+.sh-ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;-webkit-tap-highlight-color:transparent}
+.sh-ham span{display:block;width:22px;height:1.5px;background:var(--w);transition:transform .3s,opacity .3s}
+/* mobile drawer */
+.sh-mob{position:fixed;inset:var(--hh) 0 0;background:rgba(9,9,9,.98);backdrop-filter:blur(18px);z-index:490;display:flex;flex-direction:column;padding:24px var(--px) 40px;overflow-y:auto;transform:translateX(100%);transition:transform .35s var(--ease)}
+.sh-mob.open{transform:none}
+.sh-mob-section{padding:16px 0;border-bottom:1px solid var(--border)}
+.sh-mob-section:last-child{border:none}
+.sh-mob-parent{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:2px;color:var(--muted2);text-decoration:none;display:block;padding:10px 0;transition:color .2s}
+.sh-mob-parent:hover{color:var(--w)}
+.sh-mob-children{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.sh-mob-child{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:6px 14px;border:1px solid var(--border);transition:border-color .2s,color .2s}
+.sh-mob-child:hover{color:var(--w);border-color:var(--muted)}
+.sh-mob-cta{display:block;background:var(--red);color:#fff;text-align:center;padding:16px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;margin-top:20px}
+
+/* ── FOOTER ── */
+.sf{background:#050505;padding:56px var(--px) 32px;border-top:1px solid var(--border)}
+.sf-grid{display:grid;grid-template-columns:1.6fr repeat(5,1fr);gap:40px;margin-bottom:48px}
+.sf-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:4px;color:var(--w);text-decoration:none;display:block;margin-bottom:10px}
+.sf-logo em{color:var(--red);font-style:normal}
+.sf-brand p{font-size:12px;font-weight:300;color:var(--muted);line-height:1.8;max-width:200px}
+.sf-col h4{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.sf-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.sf-col ul li a{font-size:12px;color:rgba(242,237,228,.42);text-decoration:none;transition:color .2s}
+.sf-col ul li a:hover{color:var(--w)}
+.sf-bottom{border-top:1px solid var(--border);padding-top:22px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center}
+.sf-copy{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.sf-socials{display:flex;gap:10px}
+.sf-soc{width:34px;height:34px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;text-decoration:none;color:var(--muted);transition:border-color .2s,color .2s}
+.sf-soc:hover{border-color:var(--red);color:var(--red)}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:14px 28px;text-decoration:none;border:none;cursor:pointer;transition:transform .18s,background .18s,box-shadow .18s;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.btn:active{transform:scale(.97)!important}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 4px 20px rgba(255,50,0,.22)}
+.btn-red:hover{background:#d42800;transform:translateY(-2px)}
+.btn-gold{background:var(--gold);color:#0d1117}
+.btn-gold:hover{background:#e8be6e;transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--w);border:1.5px solid var(--border)}
+.btn-ghost:hover{border-color:var(--w);transform:translateY(-2px)}
+.btn-dark{background:var(--ink,#0d1117);color:var(--w)}
+.btn-dark:hover{transform:translateY(-2px)}
+.btn-lg{padding:17px 36px;font-size:14px}
+.btn-full{width:100%}
+.arr{font-size:16px;transition:transform .2s}
+.btn:hover .arr{transform:translateX(4px)}
+
+/* ── TYPE ── */
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--red)}
+.eyebrow::before{content:'';width:20px;height:1.5px;background:var(--red);flex-shrink:0}
+.eyebrow.gold{color:var(--gold)}.eyebrow.gold::before{background:var(--gold)}
+.eyebrow.cyan{color:var(--cyan)}.eyebrow.cyan::before{background:var(--cyan)}
+.stitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,7vw,80px);line-height:.92;margin-top:10px}
+
+/* ── SECTION ── */
+.sec{padding:clamp(56px,9vw,112px) var(--px)}
+.page-head{padding:calc(var(--hh) + clamp(44px,8vw,96px)) var(--px) clamp(40px,6vw,64px);position:relative;overflow:hidden;background:var(--mid)}
+.page-head-bg{position:absolute;inset:0;pointer-events:none}
+.page-head-bg-red{background:radial-gradient(ellipse 60% 80% at 15% 60%,rgba(255,50,0,.12) 0%,transparent 60%),repeating-linear-gradient(0deg,transparent,transparent 47px,rgba(255,255,255,.022) 47px,rgba(255,255,255,.022) 48px),repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(255,255,255,.022) 47px,rgba(255,255,255,.022) 48px)}
+.page-head-bg-gold{background:radial-gradient(ellipse 60% 80% at 85% 40%,rgba(212,165,80,.12) 0%,transparent 60%),repeating-linear-gradient(0deg,transparent,transparent 47px,rgba(255,255,255,.022) 47px,rgba(255,255,255,.022) 48px),repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(255,255,255,.022) 47px,rgba(255,255,255,.022) 48px)}
+.page-head-bg-cyan{background:radial-gradient(ellipse 60% 80% at 15% 60%,rgba(0,229,212,.10) 0%,transparent 60%),repeating-linear-gradient(0deg,transparent,transparent 47px,rgba(255,255,255,.022) 47px,rgba(255,255,255,.022) 48px),repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(255,255,255,.022) 47px,rgba(255,255,255,.022) 48px)}
+.page-head h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,12vw,140px);line-height:.9;margin:14px 0 16px;position:relative;z-index:1}
+.page-head p{font-size:clamp(13px,1.7vw,15px);font-weight:300;color:var(--muted2);max-width:560px;position:relative;z-index:1}
+.page-head .eyebrow{position:relative;z-index:1}
+.breadcrumb{font-size:11px;color:var(--muted);margin-bottom:20px;position:relative;z-index:1}
+.breadcrumb a{color:var(--muted);text-decoration:none;transition:color .2s}
+.breadcrumb a:hover{color:var(--w)}
+.breadcrumb span{margin:0 6px}
+
+/* ── CARDS ── */
+.card{background:var(--mid2);overflow:hidden;transition:background .3s,transform .22s,box-shadow .22s}
+.card:hover{background:var(--mid3);transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,.45)}
+.card-img{aspect-ratio:16/10;background:#1a1a1a;display:flex;align-items:center;justify-content:center;font-size:40px;position:relative;overflow:hidden}
+.card-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.4),transparent)}
+.card-body{padding:20px}
+.card-tag{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);display:block;margin-bottom:8px}
+.card-title{font-size:15px;font-weight:700;line-height:1.45;margin-bottom:6px}
+.card-meta{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:1.5px;color:var(--muted)}
+
+/* ── FORMS ── */
+.fg{display:flex;flex-direction:column;gap:7px}
+.fl{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted)}
+.fl em{color:var(--red);font-style:normal;margin-left:2px}
+.fi,.fsel,.fta{background:var(--mid2);border:1.5px solid rgba(242,237,228,.08);padding:13px 14px;font-family:'Noto Sans JP',sans-serif;font-size:14px;color:var(--w);outline:none;width:100%;-webkit-appearance:none;transition:border-color .2s,box-shadow .2s}
+.fi::placeholder,.fta::placeholder{color:var(--muted)}
+.fi:focus,.fsel:focus,.fta:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(255,50,0,.08)}
+.fsel{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23f2ede4' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:38px;cursor:pointer}
+.fsel option{background:var(--mid2)}
+.fta{resize:vertical;min-height:130px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px}
+.ff{grid-column:1/-1}
+
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease}
+.rv.in{opacity:1;transform:none}
+
+/* ── TICKER ── */
+.ticker-wrap{overflow:hidden}
+.ticker-track{display:flex;gap:56px;animation:tick 30s linear infinite;white-space:nowrap}
+.ticker-item{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:14px}
+.ticker-item::before{content:'◆';color:var(--red);font-size:5px}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  .sh-nav,.sh-cta{display:none}
+  .sh-ham{display:flex}
+  .sf-grid{grid-template-columns:1fr 1fr}
+  .sf-brand{grid-column:1/-1}
+}
+@media(max-width:560px){
+  .fgrid{grid-template-columns:1fr}
+  .sf-grid{grid-template-columns:1fr}
+  .sf-bottom{flex-direction:column;text-align:center}
+  .sf{padding-bottom:calc(80px + env(safe-area-inset-bottom))}
+}
+
+
+.about-table{width:100%;border-collapse:collapse}
+.about-table tr{border-bottom:1px solid var(--border)}
+.about-table td{padding:18px 0;font-size:14px;vertical-align:top;line-height:1.8}
+.about-table td:first-child{width:160px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding-right:20px;flex-shrink:0}
+.biz-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:28px}
+.biz-c{background:var(--mid2);padding:32px;border-top:3px solid var(--red)}
+.biz-c.gold{border-top-color:var(--gold)}
+.biz-title{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1px;margin-bottom:12px}
+.biz-desc{font-size:13px;font-weight:300;color:var(--muted2);line-height:1.95}
+.history-list{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--border);margin-top:20px}
+.history-row{display:flex;gap:24px;padding:14px 0;border-bottom:1px solid var(--border)}
+.history-year{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--red);width:56px;flex-shrink:0;line-height:1.6}
+.history-text{font-size:13px;font-weight:300;color:var(--muted2);line-height:1.8}
+@media(max-width:600px){.biz-grid{grid-template-columns:1fr}.about-table td:first-child{width:100px}}
+
+</style>
+</head>
+<body>
+
+<header class="sh" id="sh">
+  <a class="sh-logo" href="../index.html">FC<em>SPORTS</em></a>
+  <nav class="sh-nav">
+    <div class="sh-nav-item">
+      <a class="sh-nav-link" href="../courts/index.html">Courts</a>
+      <div class="sh-drop">
+        <a href="../courts/map/index.html">Map</a>
+        <a href="../courts/tokyo/index.html">Tokyo</a>
+        <a href="../courts/nagoya/index.html">Nagoya</a>
+        <a href="../courts/osaka/index.html">Osaka</a>
+      </div>
+    </div>
+    <div class="sh-nav-item">
+      <a class="sh-nav-link" href="../events/index.html">Events</a>
+      <div class="sh-drop">
+        <a href="../events/tournaments/index.html">Tournaments</a>
+        <a href="../events/leagues/index.html">Leagues</a>
+      </div>
+    </div>
+    <a class="sh-nav-link" href="../players/index.html">Players</a>
+    <div class="sh-nav-item">
+      <a class="sh-nav-link" href="../media/index.html">Media</a>
+      <div class="sh-drop">
+        <a href="../media/interviews/index.html">Interviews</a>
+        <a href="../media/news/index.html">News</a>
+        <a href="../media/guides/index.html">Guides</a>
+      </div>
+    </div>
+    <a class="sh-nav-link" href="../academy/index.html">Academy</a>
+    <a class="sh-nav-link" href="../advertise/index.html">Advertise</a>
+    <a class="sh-nav-link" href="../about/index.html">About</a>
+  </nav>
+  <button class="sh-ham" id="ham"><span></span><span></span><span></span></button>
+  <a class="sh-cta" href="../courts/index.html">コートを探す</a>
+</header>
+
+<nav class="sh-mob" id="mob">
+  <div class="sh-mob-section">
+    <a class="sh-mob-parent" href="../courts/index.html" onclick="closeMob()">Courts</a>
+    <div class="sh-mob-children">
+      <a class="sh-mob-child" href="../courts/map/index.html"    onclick="closeMob()">Map</a>
+      <a class="sh-mob-child" href="../courts/tokyo/index.html"  onclick="closeMob()">Tokyo</a>
+      <a class="sh-mob-child" href="../courts/nagoya/index.html" onclick="closeMob()">Nagoya</a>
+      <a class="sh-mob-child" href="../courts/osaka/index.html"  onclick="closeMob()">Osaka</a>
+    </div>
+  </div>
+  <div class="sh-mob-section">
+    <a class="sh-mob-parent" href="../events/index.html" onclick="closeMob()">Events</a>
+    <div class="sh-mob-children">
+      <a class="sh-mob-child" href="../events/tournaments/index.html" onclick="closeMob()">Tournaments</a>
+      <a class="sh-mob-child" href="../events/leagues/index.html"     onclick="closeMob()">Leagues</a>
+    </div>
+  </div>
+  <div class="sh-mob-section"><a class="sh-mob-parent" href="../players/index.html"  onclick="closeMob()">Players</a></div>
+  <div class="sh-mob-section">
+    <a class="sh-mob-parent" href="../media/index.html" onclick="closeMob()">Media</a>
+    <div class="sh-mob-children">
+      <a class="sh-mob-child" href="../media/interviews/index.html" onclick="closeMob()">Interviews</a>
+      <a class="sh-mob-child" href="../media/news/index.html"       onclick="closeMob()">News</a>
+      <a class="sh-mob-child" href="../media/guides/index.html"     onclick="closeMob()">Guides</a>
+    </div>
+  </div>
+  <div class="sh-mob-section"><a class="sh-mob-parent" href="../academy/index.html"  onclick="closeMob()">Academy</a></div>
+  <div class="sh-mob-section"><a class="sh-mob-parent" href="../advertise/index.html" onclick="closeMob()">Advertise</a></div>
+  <div class="sh-mob-section"><a class="sh-mob-parent" href="../about/index.html"     onclick="closeMob()">About</a></div>
+  <a class="sh-mob-cta" href="../courts/index.html" onclick="closeMob()">コートを探す →</a>
+</nav>
+
+<div class="page-head"><div class="page-head-bg page-head-bg-red"></div>
+  <div class="eyebrow rv">会社情報</div>
+  <h1>ABOUT<br>FCSPORTS</h1>
+  <p>パデル・ピックルボールを通じてインクルーシブスポーツを広める。<br>アスライト株式会社のミッション。</p>
+</div>
+
+<!-- 会社概要 -->
+<section class="sec" style="background:var(--bk)">
+  <div class="eyebrow rv">会社概要</div>
+  <h2 class="stitle rv">COMPANY<br>PROFILE</h2>
+  <table class="about-table rv" style="margin-top:32px;max-width:800px">
+    <tr><td>会社名</td><td><strong>アスライト株式会社</strong></td></tr>
+    <tr><td>英語名</td><td>Aslight Inc.</td></tr>
+    <tr><td>代表取締役</td><td>溝畑 幸宏</td></tr>
+    <tr><td>所在地</td><td>〒490-1111　愛知県あま市甚目寺郷浦140番地１</td></tr>
+    <tr><td>TEL</td><td><a href="tel:0524496005" style="color:var(--red)">052-449-6005</a></td></tr>
+    <tr><td>FAX</td><td>052-449-6006</td></tr>
+    <tr><td>担当者</td><td>堤 翔太</td></tr>
+    <tr><td>メール</td><td><a href="mailto:ailabo.tsutsumi@gmail.com" style="color:var(--red)">ailabo.tsutsumi@gmail.com</a></td></tr>
+    <tr><td>グループ</td><td>株式会社アイリス（子会社）</td></tr>
+    <tr><td>事業内容</td><td>スポーツ事業（パデル事業） / 就労継続支援B型事業所（2025年12月〜）</td></tr>
+  </table>
+</section>
+
+<!-- 事業内容 -->
+<section class="sec" style="background:var(--mid)">
+  <div class="eyebrow rv">事業内容</div>
+  <h2 class="stitle rv">BUSINESS</h2>
+  <div class="biz-grid">
+    <div class="biz-c rv">
+      <div class="biz-title">🏟 スポーツ事業</div>
+      <div class="biz-desc">
+        パデル・ピックルボールを中心としたラケットスポーツのプラットフォーム「FCスPORTS」を運営。コート・大会・プレイヤー・コーチ・メディアをつなぎ、日本のスポーツ市場の拡大に貢献しています。<br><br>
+        2025年1月、トヨタカローラ名古屋株式会社と共同で愛知県日進市の口論義運動公園に<strong>世界初のデュアルコート（パデル＆ピックルボール）</strong>を設置。インクルーシブスポーツとして、障がいのある方・子ども・大人・性別・国籍を問わず、すべての人が楽しめるスポーツの普及を進めています。
+      </div>
+    </div>
+    <div class="biz-c gold rv" data-d=".08">
+      <div class="biz-title">👥 就労支援事業</div>
+      <div class="biz-desc">
+        就労継続支援B型事業所として（2025年12月〜）、障がいのある方々の就労支援を行っています。スポーツを通じた社会参加・就労機会の創出をテーマに、FCスPORTSの運営業務にも就労メンバーが携わっています。<br><br>
+        「障がいをお持ちの方も、そうでない方も、みんなが同じフィールドで愉しめる社会」を目指して事業を展開しています。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ミッション -->
+<section class="sec" style="background:var(--bk)">
+  <div class="eyebrow rv">ミッション</div>
+  <h2 class="stitle rv">MISSION</h2>
+  <p style="font-family:'Bebas Neue',sans-serif;font-size:clamp(26px,4.5vw,52px);line-height:1.15;max-width:720px;margin-top:20px" class="rv">「インクルーシブスポーツとして<br>パデルをみんなに知ってもらいたい。」</p>
+  <p style="font-size:14px;font-weight:300;line-height:2.1;color:var(--muted2);max-width:640px;margin-top:22px" class="rv">障がいをお持ちの方、子どもも、大人も、性別も、国籍も関係なく、みんなが同じフィールドで愉しめ、熱中できるスポーツがある。FCスPORTSは、スポーツの力で人と人をつなぎ、すべての人の人生を豊かにすることを目指しています。</p>
+</section>
+
+<!-- 沿革 -->
+<section class="sec" style="background:var(--mid)">
+  <div class="eyebrow rv">沿革</div>
+  <h2 class="stitle rv">HISTORY</h2>
+  <div class="history-list rv" style="max-width:720px">
+    <div class="history-row"><div class="history-year">2024</div><div class="history-text">パデル事業を開始<br>トヨタカローラ名古屋株式会社と連携し、インクルーシブスポーツとしてのパデル普及活動を本格化</div></div>
+    <div class="history-row"><div class="history-year">2025.01</div><div class="history-text">トヨタカローラ名古屋株式会社と共同で愛知県日進市・口論義運動公園に<strong>世界初のデュアルコート（パデル＆ピックルボール）</strong>を期間限定設置<br>オープンイベント・大会を開催</div></div>
+    <div class="history-row"><div class="history-year">2025.12</div><div class="history-text">就労継続支援B型事業所として開始</div></div>
+    <div class="history-row"><div class="history-year">2026.03</div><div class="history-text">FCSPORTS プラットフォーム正式リリース<br>全国のコート・大会・プレイヤー・アカデミー情報を一元化したラケットスポーツポータルを公開</div></div>
+  </div>
+</section>
+
+<!-- お問い合わせ -->
+<section id="contact" class="sec" style="background:var(--bk)">
+  <div style="max-width:680px;margin:0 auto">
+    <div class="eyebrow rv">お問い合わせ</div>
+    <h2 class="stitle rv">CONTACT</h2>
+    <p style="font-size:13px;font-weight:300;color:var(--muted2);margin:16px 0 32px;line-height:1.9" class="rv">
+      コート掲載・大会掲載・広告スポンサー・取材・その他のお問い合わせはこちらからどうぞ。<br>
+      お電話でのご相談は <a href="tel:0524496005" style="color:var(--red);font-weight:700">052-449-6005</a>（平日9:00〜18:00）まで。
+    </p>
+    <form style="margin-top:16px">
+      <div class="fgrid">
+        <div class="fg rv"><label class="fl">お名前<em>*</em></label><input class="fi" type="text" placeholder="山田 太郎" required></div>
+        <div class="fg rv"><label class="fl">会社名</label><input class="fi" type="text" placeholder="株式会社○○"></div>
+        <div class="fg rv"><label class="fl">メール<em>*</em></label><input class="fi" type="email" placeholder="your@email.com" required></div>
+        <div class="fg rv"><label class="fl">電話</label><input class="fi" type="tel" placeholder="090-0000-0000"></div>
+        <div class="fg ff rv"><label class="fl">カテゴリ</label><select class="fsel"><option>ご相談・ご質問</option><option>コート掲載</option><option>大会掲載</option><option>広告・スポンサー</option><option>取材・メディア</option><option>採用</option><option>その他</option></select></div>
+        <div class="fg ff rv"><label class="fl">お問い合わせ内容<em>*</em></label><textarea class="fta" placeholder="ご質問・ご相談内容をご自由にお書きください" required></textarea></div>
+        <div class="ff"><button type="submit" class="btn btn-red btn-full btn-lg" style="margin-top:8px">送信する <span class="arr">→</span></button><p style="font-size:11px;color:var(--muted);margin-top:10px">通常2営業日以内にご返信いたします。</p></div>
+      </div>
+    </form>
+  </div>
+</section>
+
+
+<footer class="sf">
+  <div class="sf-grid">
+    <div class="sf-brand">
+      <a class="sf-logo" href="../index.html">FC<em>SPORTS</em></a>
+      <p>日本最大のラケットスポーツプラットフォーム<br>アスライト株式会社</p>
+    </div>
+    <div class="sf-col"><h4>Courts</h4><ul>
+      <li><a href="../courts/map/index.html">Map</a></li>
+      <li><a href="../courts/tokyo/index.html">Tokyo</a></li>
+      <li><a href="../courts/nagoya/index.html">Nagoya</a></li>
+      <li><a href="../courts/osaka/index.html">Osaka</a></li>
+    </ul></div>
+    <div class="sf-col"><h4>Events</h4><ul>
+      <li><a href="../events/tournaments/index.html">Tournaments</a></li>
+      <li><a href="../events/leagues/index.html">Leagues</a></li>
+    </ul></div>
+    <div class="sf-col"><h4>Media</h4><ul>
+      <li><a href="../media/interviews/index.html">Interviews</a></li>
+      <li><a href="../media/news/index.html">News</a></li>
+      <li><a href="../media/guides/index.html">Guides</a></li>
+    </ul></div>
+    <div class="sf-col"><h4>More</h4><ul>
+      <li><a href="../players/index.html">Players</a></li>
+      <li><a href="../academy/index.html">Academy</a></li>
+      <li><a href="../advertise/index.html">Advertise</a></li>
+    </ul></div>
+    <div class="sf-col"><h4>Company</h4><ul>
+      <li><a href="../about/index.html">About Us</a></li>
+      <li><a href="#">Terms</a></li>
+      <li><a href="#">Privacy</a></li>
+    </ul></div>
+  </div>
+  <div class="sf-bottom">
+    <span class="sf-copy">© 2026 Aslight Inc. All rights reserved.</span>
+    <div class="sf-socials">
+      <a class="sf-soc" href="#">𝕏</a>
+      <a class="sf-soc" href="#">📷</a>
+      <a class="sf-soc" href="#">▶</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// header scroll
+const sh=document.getElementById('sh');
+window.addEventListener('scroll',()=>sh.classList.toggle('scrolled',scrollY>40),{passive:true});
+// hamburger
+const ham=document.getElementById('ham'),mob=document.getElementById('mob');
+let open=false;
+ham.addEventListener('click',()=>{
+  open=!open;mob.classList.toggle('open',open);
+  const s=ham.querySelectorAll('span');
+  if(open){s[0].style.transform='translateY(6.5px) rotate(45deg)';s[1].style.opacity='0';s[2].style.transform='translateY(-6.5px) rotate(-45deg)'}
+  else{s.forEach(x=>{x.style.transform='';x.style.opacity=''})}
+});
+function closeMob(){open=false;mob.classList.remove('open');ham.querySelectorAll('span').forEach(x=>{x.style.transform='';x.style.opacity=''})}
+// reveal
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}}),{threshold:.08});
+document.querySelectorAll('.rv').forEach((el,i)=>{
+  const d=el.dataset.d||0;el.style.transitionDelay=d+'s';ro.observe(el);
+});
+// form submit
+document.querySelectorAll('form').forEach(f=>f.addEventListener('submit',e=>{
+  e.preventDefault();const b=f.querySelector('button[type=submit]');
+  if(b){b.innerHTML='✓ &nbsp;送信しました！';b.style.background='#1a5c38';b.disabled=true}
+}));
+// type btn toggle
+document.querySelectorAll('.tbtn').forEach(b=>b.addEventListener('click',()=>{
+  b.closest('.tbtn-group')?.querySelectorAll('.tbtn').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+}));
+</script>
+</body>
+</html>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <title>About | FCSPORTS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
